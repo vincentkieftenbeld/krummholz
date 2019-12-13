@@ -1,0 +1,16 @@
+*.pyc
+
+# venv
+env/
+
+# Sphinx
+docs/_build
+docs/_static
+docs/_templates
+
+# py.test
+.cache
+.pytest_cache/
+
+# mypy
+.mypy_cache/
