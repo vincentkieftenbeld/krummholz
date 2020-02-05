@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'saplings'
+project = 'krummholz'
 copyright = '2019, Vincent Kieftenbeld'
 author = 'Vincent Kieftenbeld'
 

@@ -4,8 +4,8 @@ This example fits a regression tree step-by-step.
 """
 import numpy as np
 
-from saplings.criteria import MSE
-from saplings.decision_tree import DecisionTree
+from krummholz.criteria import MSE
+from krummholz.decision_tree import DecisionTree
 
 
 def create_data():

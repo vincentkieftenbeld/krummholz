@@ -1,11 +1,17 @@
 from __future__ import annotations
+
 import numpy as np
 
+from krummholz.exceptions import NotFittedError
 
-class Model:
+
+class Estimator:
     """A base class for classification and regression models."""
 
-    def fit(self, X, y) -> Model:
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}()"
+
+    def fit(self, X, y) -> Estimator:
         """
         Train the model on a dataset.
 
@@ -18,7 +24,7 @@ class Model:
 
         Returns
         -------
-        self : Model
+        self : Estimator
           Model fitted to the training data.
 
         """
@@ -27,6 +33,12 @@ class Model:
     def predict(self, X) -> np.array:
         """Predict targets for samples."""
         return np.array([self._predict(x) for x in X])
+
+    def fit_predict(self, X, y, X_pred=None):
+        """Convenience method to fit an estimator and predict."""
+        X_pred = X_pred or X
+        self.fit(X, y)
+        return self.predict(X_pred)
 
     def predict_proba(self, X) -> np.array:
         """Predict probabilities.
@@ -46,7 +58,7 @@ class Model:
         """
         return np.array([self._predict_proba(x) for x in X])
 
-    def _predict(self, x):
+    def _predict(self, x) -> float:
         """Predict target for a single sample."""
         raise NotImplementedError
 
@@ -55,7 +67,7 @@ class Model:
         raise NotImplementedError
 
 
-class BaseClassifier(Model):
+class BaselineClassifier(Estimator):
     """A baseline classifier making predictions solely based on observed class frequencies."""
 
     def __init__(self) -> None:
@@ -63,28 +75,36 @@ class BaseClassifier(Model):
         self.proba = None
         self.pred = None
 
-    def fit(self, X, y) -> BaseClassifier:
+    def fit(self, X, y) -> BaselineClassifier:
         self.proba = np.bincount(y) / len(y)
         self.pred = np.argmax(self.proba)
         return self
 
     def _predict(self, x):
+        if self.pred is None:
+            raise NotFittedError
+
         return self.pred
 
     def _predict_proba(self, x):
+        if self.pred is None:
+            raise NotFittedError
+
         return self.proba
 
 
-class BaseRegressor(Model):
+class BaselineRegressor(Estimator):
     """A baseline regressor making predictions solely based on the observed mean."""
 
     def __init__(self) -> None:
         super().__init__()
         self.pred = None
 
-    def fit(self, X, y) -> BaseRegressor:
+    def fit(self, X, y) -> BaselineRegressor:
         self.pred = np.mean(y)
         return self
 
     def _predict(self, x):
+        if self.pred is None:
+            raise NotFittedError
         return self.pred

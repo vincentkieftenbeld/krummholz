@@ -43,7 +43,7 @@ def train_test_split(
     n_train = int(train_size * n_samples)
 
     if random_state is not None:
-        np.set_seed(random_state)
+        np.random.seed(random_state)
 
     if shuffle:
         # shuffle features and targets using the same permutation

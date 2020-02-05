@@ -1,6 +1,6 @@
 import numpy as np
 
-from saplings.training import train_test_split
+from krummholz.training import train_test_split
 
 
 def test_train_test_split():

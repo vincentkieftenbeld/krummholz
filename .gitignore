@@ -1,12 +1,6 @@
+# Python
 *.pyc
-
-# venv
-env/
-
-# Sphinx
-docs/_build
-docs/_static
-docs/_templates
+venv/
 
 # py.test
 .cache
@@ -14,3 +8,11 @@ docs/_templates
 
 # mypy
 .mypy_cache/
+
+# Sphinx
+docs/_build
+docs/_static
+docs/_templates
+
+# Jupyter
+.ipynb_checkpoints/

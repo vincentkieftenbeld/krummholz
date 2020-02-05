@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from saplings.models import BaseClassifier, BaseRegressor
+from krummholz.models import BaselineClassifier, BaselineRegressor
 
 
 def test_base_classifier():
@@ -9,7 +9,7 @@ def test_base_classifier():
     X_test = [3, 5]
     y_train = [0, 0, 1, 1, 1]
 
-    clf = BaseClassifier()
+    clf = BaselineClassifier()
     clf.fit(X_train, y_train)
 
     # base classifier always predicts majority class
@@ -28,7 +28,7 @@ def test_base_regressor():
     y_train = np.arange(10, 60, 10)
     X_test = np.random.random(5)[:, np.newaxis]
 
-    clf = BaseRegressor()
+    clf = BaselineRegressor()
     clf.fit(X_train, y_train)
 
     # base regressor always predicts observed mean

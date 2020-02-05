@@ -1,4 +1,9 @@
-# saplings
-Saplings implements tree-based machine learning algorithms 
-for classification and regression from scratch.
+# krummholz
+Stunted tree-based machine learning algorithms
+
+This package implements several tree-based machine learning algorithms for educational purposes. 
+Currently the following algorithms are implemented: 
+- Decision tree
+- Random forest
+- Gradient boosted trees
 
