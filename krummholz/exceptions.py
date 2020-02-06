@@ -1,2 +1,2 @@
 class NotFittedError(ValueError, AttributeError):
-    """Exception to raise when an estimator is used before fitting."""
+    """Exception raised when an estimator is used before fitting."""

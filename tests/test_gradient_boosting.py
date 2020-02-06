@@ -27,6 +27,6 @@ def test_gradient_boosted_trees_mae():
 
 
 def test_gradient_boosted_trees_mse():
-    clf = GradientBoostedTrees(n_estimators=4, criterion=MSE()).fit(X, y)
+    clf = GradientBoostedTrees(n_estimators=1, criterion=MSE()).fit(X, y)
     y_pred = clf.predict(X)
     assert (y_pred == np.mean(y)).all()
